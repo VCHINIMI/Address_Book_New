@@ -46,7 +46,8 @@ public class Address_Book_Main {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program");
 		Address_Book_Main aMain = new Address_Book_Main();
-		Contact contact = aMain.takeContactInformation();
+		aMain.addContact(aMain.takeContactInformation());
+		
 		
 	}
 }
