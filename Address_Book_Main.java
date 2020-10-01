@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+
+
 public class Address_Book_Main {
 	public ArrayList<Contact> addressBook = new ArrayList<Contact>();
 	
@@ -41,13 +43,24 @@ public class Address_Book_Main {
 		}
 		
 	}
-	
+	public void editContact(String fName) {
+		for(int i=0; i<addressBook.size(); i++) {
+			if( ((addressBook.get(i)).f_Name).equals(fName)) {
+				addressBook.set(i, takeContactInformation() );
+			}
+			else {
+				System.out.println("Name not in AddressBook");
+			}
+		}
+		
+	}	
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program");
 		Address_Book_Main aMain = new Address_Book_Main();
 		aMain.addContact(aMain.takeContactInformation());
-		
-		
+		aMain.editContact("vinay");
+		aMain.displayAllContacts();
 	}
+	
 }
