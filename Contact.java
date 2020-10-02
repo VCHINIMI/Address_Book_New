@@ -27,4 +27,13 @@ public class Contact{
 		return ("Name : "+f_Name+"Last name : "+l_Name+" Address : "+address+" City : "+city+" State: "+state+" Zip Code: "+zip+" Phone Number : "+ phone_Number+" Email Id : "+email);
 		
 	}
+	@Override
+	public boolean equals(Object o) {
+		if(o==this)
+			return true;
+		if(!(o instanceof Contact))
+			return false;
+		Contact c = (Contact) o;
+		return f_Name.equals(c.f_Name) && l_Name.equals(c.l_Name) && address.equals(c.address) && city.equals(c.city) && state.equals(c.state) && Integer.compare(zip, c.zip)==0 && Integer.compare(phone_Number, c.phone_Number)==0 && email.equals(c.email);
+	}
 }

@@ -53,7 +53,16 @@ public class AddressBookClass {
 		}		
 	}
 	public void addContact(Contact contact) {
-		addressBook.add(contact);
+		int flag =0;
+		for(Contact c : addressBook) {
+			if(contact.equals(c))
+				flag = 1;
+				
+		}
+		if(flag==0)
+			addressBook.add(contact);
+		else 
+			System.out.println("Contact already exsits. please go for edit or delete!");
 	}
 	
 	public void editContact(String fName) {
