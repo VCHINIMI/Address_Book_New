@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+
+
 import java.util.Scanner;
 
 
@@ -102,11 +105,34 @@ public class Address_Book_Main {
 		}
 		if(flag12==0) {
 			System.out.println("Contact not found");
-		}
-		
+		}		
 	}
 	
-	public void displayAllAddressBooks () {
+	public void countByCityAndState() {
+		final HashMap<String, Integer>countByHashMap = new HashMap<String, Integer>();
+		Iterator<HashMap.Entry<String,AddressBookClass>> it4 = (multiAddressBook.entrySet()).iterator();
+		while(it4.hasNext()) {
+			HashMap.Entry<String,AddressBookClass> entry = it4.next();
+			AddressBookClass aBookClass3 = entry.getValue();
+			for(Contact c : aBookClass3.getAddressBook() ) {
+				if(countByHashMap.get(c.getCity())==null) {
+					countByHashMap.put(c.getCity(), 1);
+				}
+				else {
+					int co = countByHashMap.get(c.getCity());
+					countByHashMap.put(c.getCity(), co++);
+				}
+			}
+		}
+		
+		Iterator<HashMap.Entry<String, AddressBookClass>> it5 = (multiAddressBook.entrySet()).iterator();
+		while(it5.hasNext()) {
+			HashMap.Entry<String,AddressBookClass> entry = it5.next();
+			System.out.println("City : "+entry.getKey()+" Count : "+entry.getValue());
+		}
+	}
+	
+	public void displayAllAddressBooks() {
 		for(String nameString : multiAddressBook.keySet())
 			System.out.println(nameString);
 	}
@@ -120,7 +146,8 @@ public class Address_Book_Main {
 			System.out.println("2. Edit");
 			System.out.println("3. Search By City or State");
 			System.out.println("4. Search By Person Name");
-			System.out.println("5. Exit ");
+			System.out.println("5. Count by city Name");
+			System.out.println("6. Exit ");
 			Scanner sc = new Scanner(System.in);
 			int option = sc.nextInt(); sc.nextLine();
 			switch(option) {
@@ -241,19 +268,17 @@ public class Address_Book_Main {
 				else {
 					System.out.println("MultiAddress Book is Empty");
 				}
-				break;
-				
+				break;				
 			case 3 :
 				abMain.searchByCityOrState();
-				break;
-				
+				break;				
 			case 4 :
 				abMain.searchByName();
-				break;
-				
-			
-			
+				break;				
 			case 5 :
+				abMain.countByCityAndState();
+				break;			
+			case 6 :
 				System.out.println("Exiting...");
 				flag1=1;
 				break;
