@@ -36,6 +36,8 @@ public class Address_Book_Main {
 	}
 	
 	public void searchByCityOrState() {
+		int flag13=0;
+		int flag14 =0;
 		System.out.println("1.City");
 		System.out.println("2.State");
 		System.out.println("3.Exit");
@@ -50,10 +52,14 @@ public class Address_Book_Main {
 				HashMap.Entry<String, AddressBookClass> entry = itr1.next();
 				AddressBookClass aBookClass = entry.getValue();
 				for(Contact c : aBookClass.getAddressBook()) {
-					if(c.getCity().equals(cityString))
+					if(c.getCity().equals(cityString)) {
 						System.out.println(c.getF_Name() +" "+c.getCity() );
+						flag13++;
+					}
 				}
-			} 
+			}
+			if(flag13==0)
+				System.out.println("No contact found");
 			break;
 		
 		case 2 : 
@@ -64,10 +70,14 @@ public class Address_Book_Main {
 				HashMap.Entry<String, AddressBookClass> entry = itr2.next();
 				AddressBookClass aBookClass1 = entry.getValue();
 				for(Contact c : aBookClass1.getAddressBook()) {
-					if(c.getState().equals(stateString))
+					if(c.getState().equals(stateString)) {
 						System.out.println(c.getF_Name()+" "+c.getCity());
+						flag14++;
+					}
 				}
 			}
+			if(flag14==0)
+				System.out.println("No contact found");
 			break;
 		case 3 :
 			System.out.println("Exiting Search...");
@@ -75,6 +85,24 @@ public class Address_Book_Main {
 		}
 	}
 	public void searchByName() {
+		int flag12 = 0;
+		Scanner sc12 = new Scanner(System.in);
+		System.out.println("Enter name you want to search");
+		String nameString = sc12.nextLine();
+		Iterator<HashMap.Entry<String, AddressBookClass>> itr3 = (multiAddressBook.entrySet()).iterator();
+		while(itr3.hasNext()) {
+			HashMap.Entry<String, AddressBookClass> entry = itr3.next();
+			AddressBookClass aBookClass2 = entry.getValue();
+			for(Contact c : aBookClass2.getAddressBook()) {
+				if(c.getF_Name().equals(nameString)) {
+					System.out.println(c.getF_Name()+" "+c.getCity()+" "+c.getState());
+					flag12++;
+				}	
+			}
+		}
+		if(flag12==0) {
+			System.out.println("Contact not found");
+		}
 		
 	}
 	
@@ -90,7 +118,9 @@ public class Address_Book_Main {
 			abMain.displayAllAddressBooks();
 			System.out.println("1. Create");
 			System.out.println("2. Edit");
-			System.out.println("3. Exit");
+			System.out.println("3. Search By City or State");
+			System.out.println("4. Search By Person Name");
+			System.out.println("5. Exit ");
 			Scanner sc = new Scanner(System.in);
 			int option = sc.nextInt(); sc.nextLine();
 			switch(option) {
@@ -212,10 +242,18 @@ public class Address_Book_Main {
 					System.out.println("MultiAddress Book is Empty");
 				}
 				break;
-			
-			
-			
+				
 			case 3 :
+				abMain.searchByCityOrState();
+				break;
+				
+			case 4 :
+				abMain.searchByName();
+				break;
+				
+			
+			
+			case 5 :
 				System.out.println("Exiting...");
 				flag1=1;
 				break;
