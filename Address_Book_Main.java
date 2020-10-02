@@ -51,9 +51,9 @@ public class Address_Book_Main {
 				AddressBookClass aBookClass = entry.getValue();
 				for(Contact c : aBookClass.getAddressBook()) {
 					if(c.getCity().equals(cityString))
-						System.out.println(c);
+						System.out.println(c.getF_Name() +" "+c.getCity() );
 				}
-			}
+			} 
 			break;
 		
 		case 2 : 
@@ -65,7 +65,7 @@ public class Address_Book_Main {
 				AddressBookClass aBookClass1 = entry.getValue();
 				for(Contact c : aBookClass1.getAddressBook()) {
 					if(c.getState().equals(stateString))
-						System.out.println(c);
+						System.out.println(c.getF_Name()+" "+c.getCity());
 				}
 			}
 			break;
@@ -73,6 +73,9 @@ public class Address_Book_Main {
 			System.out.println("Exiting Search...");
 			break;
 		}
+	}
+	public void searchByName() {
+		
 	}
 	
 	public void displayAllAddressBooks () {
