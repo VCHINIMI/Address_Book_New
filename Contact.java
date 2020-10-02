@@ -10,6 +10,54 @@ public class Contact{
 	int phone_Number;
 	String email;
 	
+	public String getF_Name() {
+		return f_Name;
+	}
+	public void setF_Name(String f_Name) {
+		this.f_Name = f_Name;
+	}
+	public String getL_Name() {
+		return l_Name;
+	}
+	public void setL_Name(String l_Name) {
+		this.l_Name = l_Name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getZip() {
+		return zip;
+	}
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+	public int getPhone_Number() {
+		return phone_Number;
+	}
+	public void setPhone_Number(int phone_Number) {
+		this.phone_Number = phone_Number;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Contact(String f_Name, String l_Name, String address, String city, String state, int zip, int phone_Number,
 			String email) {
 		super();

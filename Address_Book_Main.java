@@ -34,13 +34,52 @@ public class Address_Book_Main {
 			return false;
 		}
 	}
+	
+	public void searchByCityOrState() {
+		System.out.println("1.City");
+		System.out.println("2.State");
+		System.out.println("3.Exit");
+		Scanner sc_1 = new Scanner(System.in);
+		int opt = sc_1.nextInt();sc_1.nextLine();
+		switch(opt) {
+		case 1 :
+			System.out.println("Enter City");
+			String cityString = sc_1.nextLine();
+			Iterator<HashMap.Entry<String, AddressBookClass>> itr1 = (multiAddressBook.entrySet()).iterator();
+			while(itr1.hasNext()) {
+				HashMap.Entry<String, AddressBookClass> entry = itr1.next();
+				AddressBookClass aBookClass = entry.getValue();
+				for(Contact c : aBookClass.getAddressBook()) {
+					if(c.getCity().equals(cityString))
+						System.out.println(c);
+				}
+			}
+			break;
+		
+		case 2 : 
+			System.out.println("Enter State");
+			String stateString = sc_1.nextLine();
+			Iterator<HashMap.Entry<String, AddressBookClass>> itr2 = (multiAddressBook.entrySet()).iterator();
+			while(itr2.hasNext()) {
+				HashMap.Entry<String, AddressBookClass> entry = itr2.next();
+				AddressBookClass aBookClass1 = entry.getValue();
+				for(Contact c : aBookClass1.getAddressBook()) {
+					if(c.getState().equals(stateString))
+						System.out.println(c);
+				}
+			}
+			break;
+		case 3 :
+			System.out.println("Exiting Search...");
+			break;
+		}
+	}
+	
 	public void displayAllAddressBooks () {
 		for(String nameString : multiAddressBook.keySet())
 			System.out.println(nameString);
 	}
-	//public AddressBookClass retrieveAddressBook(String name) {
-		
-	//}
+	
 	public static void main(String[] args) {
 		int flag1 =0;
 		Address_Book_Main abMain = new Address_Book_Main();
