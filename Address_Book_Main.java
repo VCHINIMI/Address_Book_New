@@ -137,6 +137,18 @@ public class Address_Book_Main {
 		System.out.println(map2);		
 	}
 	
+	public void sortByName(){
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
+			}
+		}
+		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getF_Name().compareTo(n1.getF_Name())).collect(Collectors.toList());
+		System.out.println(sortedList);
+	}
+	
 	public void displayAllAddressBooks() {
 		for(String nameString : multiAddressBook.keySet())
 			System.out.println(nameString);
@@ -152,7 +164,8 @@ public class Address_Book_Main {
 			System.out.println("3. Search By City or State");
 			System.out.println("4. Search By Person Name");
 			System.out.println("5. Count by city Name");
-			System.out.println("6. Exit ");
+			System.out.println("6. Sort All Contacts By First Name ");
+			System.out.println("7. Exit");
 			Scanner sc = new Scanner(System.in);
 			int option = sc.nextInt(); sc.nextLine();
 			switch(option) {
@@ -284,6 +297,8 @@ public class Address_Book_Main {
 				abMain.countByCityAndState();
 				break;			
 			case 6 :
+				abMain.sortByName();				
+			case 7 :
 				System.out.println("Exiting...");
 				flag1=1;
 				break;
