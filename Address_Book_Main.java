@@ -3,11 +3,12 @@ package MyPackage.Vinay.Address_Book_New;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-
-
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.Scanner;
 
 
@@ -19,6 +20,15 @@ public class Address_Book_Main {
 	}
 	public void setMultiAddressBook(HashMap<String, AddressBookClass> multiAddressBook) {
 		this.multiAddressBook = multiAddressBook;
+	}
+	public ArrayList<Contact> listOfAllContactsByOrder() {
+		ArrayList<Contact> con = new ArrayList<Contact>();
+		for(AddressBookClass abc : multiAddressBook.values()) {
+			for(Contact c : abc.getAddressBook()) {
+				con.add(c);
+			}
+		}
+		return con;
 	}
 	public boolean createNewAddressBook(String name){
 		int flag =0;
@@ -39,52 +49,54 @@ public class Address_Book_Main {
 	}
 	
 	public void searchByCityOrState() {
-		int flag13=0;
 		int flag14 =0;
-		System.out.println("1.City");
-		System.out.println("2.State");
-		System.out.println("3.Exit");
-		Scanner sc_1 = new Scanner(System.in);
-		int opt = sc_1.nextInt();sc_1.nextLine();
-		switch(opt) {
-		case 1 :
-			System.out.println("Enter City");
-			String cityString = sc_1.nextLine();
-			Iterator<HashMap.Entry<String, AddressBookClass>> itr1 = (multiAddressBook.entrySet()).iterator();
-			while(itr1.hasNext()) {
-				HashMap.Entry<String, AddressBookClass> entry = itr1.next();
-				AddressBookClass aBookClass = entry.getValue();
-				for(Contact c : aBookClass.getAddressBook()) {
-					if(c.getCity().equals(cityString)) {
-						System.out.println(c.getF_Name() +" "+c.getCity() );
-						flag13++;
-					}
-				}
+		int myFlag=0;
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
 			}
-			if(flag13==0)
-				System.out.println("No contact found");
-			break;
+		}
+		while(myFlag==0) {
+			System.out.println("1.City");
+			System.out.println("2.State");
+			System.out.println("3.Exit");
+			Scanner sc_1 = new Scanner(System.in);
+			int opt = sc_1.nextInt();sc_1.nextLine();
+			switch(opt) {
+			case 1 :
+				System.out.println("Enter City");
+				Scanner sc1234 = new Scanner(System.in);
+				String cityString = sc1234.nextLine();
+				List<Contact> sByCity = myList.stream().filter(c->(c.getCity()).equals(cityString)).collect(Collectors.toList());
+				if(sByCity.isEmpty())
+					System.out.println("No contact Found");
+				else {
+					for(Contact contact : sByCity) {
+						System.out.println(contact);
+					}
+				}					
+				break;
 		
-		case 2 : 
-			System.out.println("Enter State");
-			String stateString = sc_1.nextLine();
-			Iterator<HashMap.Entry<String, AddressBookClass>> itr2 = (multiAddressBook.entrySet()).iterator();
-			while(itr2.hasNext()) {
-				HashMap.Entry<String, AddressBookClass> entry = itr2.next();
-				AddressBookClass aBookClass1 = entry.getValue();
-				for(Contact c : aBookClass1.getAddressBook()) {
-					if(c.getState().equals(stateString)) {
-						System.out.println(c.getF_Name()+" "+c.getCity());
-						flag14++;
+			case 2 : 
+				System.out.println("Enter State");
+				String stateString = sc_1.nextLine();
+				List<Contact> sByState = myList.stream().filter(c->(c.getState()).equals(stateString)).collect(Collectors.toList());
+				if(sByState.isEmpty())
+					System.out.println("No contact Found");
+				else {
+					for(Contact contact : sByState) {
+						System.out.println(contact);
 					}
-				}
+				}				
+				break;
+				
+			case 3 :
+				System.out.println("Exiting Search...");
+				myFlag=1;
+				break;
 			}
-			if(flag14==0)
-				System.out.println("No contact found");
-			break;
-		case 3 :
-			System.out.println("Exiting Search...");
-			break;
 		}
 	}
 	public void searchByName() {

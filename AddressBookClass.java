@@ -2,9 +2,8 @@ package MyPackage.Vinay.Address_Book_New;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 
 public class AddressBookClass {
@@ -91,4 +90,14 @@ public class AddressBookClass {
 	public String toString() {
 		return nameOfAddressBook;
 	}
+	public List<Contact> searchByCity(String cityString) {
+		List<Contact> con = new ArrayList<Contact>();
+		for(Contact c:addressBook) {
+			if(c.getCity().equals(cityString)) {
+				con.add(c);
+			}
+		}
+		return con;
+	}
+	
 }
