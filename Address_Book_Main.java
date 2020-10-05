@@ -100,24 +100,24 @@ public class Address_Book_Main {
 		}
 	}
 	public void searchByName() {
-		int flag12 = 0;
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
+			}
+		}
 		Scanner sc12 = new Scanner(System.in);
 		System.out.println("Enter name you want to search");
 		String nameString = sc12.nextLine();
-		Iterator<HashMap.Entry<String, AddressBookClass>> itr3 = (multiAddressBook.entrySet()).iterator();
-		while(itr3.hasNext()) {
-			HashMap.Entry<String, AddressBookClass> entry = itr3.next();
-			AddressBookClass aBookClass2 = entry.getValue();
-			for(Contact c : aBookClass2.getAddressBook()) {
-				if(c.getF_Name().equals(nameString)) {
-					System.out.println(c.getF_Name()+" "+c.getCity()+" "+c.getState());
-					flag12++;
-				}	
-			}
-		}
-		if(flag12==0) {
+		
+		List<Contact> sByFname = myList.stream().filter(c->(c.getF_Name()).equals(nameString)).collect(Collectors.toList());
+		if(sByFname.isEmpty()) {
 			System.out.println("Contact not found");
-		}		
+		}
+		else {
+			System.out.println(sByFname);
+		}
 	}
 	
 	public void countByCityAndState() {
