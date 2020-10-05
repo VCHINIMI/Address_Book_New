@@ -149,6 +149,42 @@ public class Address_Book_Main {
 		System.out.println(sortedList);
 	}
 	
+	public void sortByCity(){
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
+			}
+		}
+		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getCity().compareTo(n1.getCity())).collect(Collectors.toList());
+		System.out.println(sortedList);
+	}
+	
+	public void sortByState(){
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
+			}
+		}
+		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getState().compareTo(n1.getState())).collect(Collectors.toList());
+		System.out.println(sortedList);
+	}
+	
+	public void sortByZip(){
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
+			}
+		}
+		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getZip()-n1.getZip()).collect(Collectors.toList());
+		System.out.println(sortedList);
+	}
+	
 	public void displayAllAddressBooks() {
 		for(String nameString : multiAddressBook.keySet())
 			System.out.println(nameString);
@@ -297,8 +333,18 @@ public class Address_Book_Main {
 				abMain.countByCityAndState();
 				break;			
 			case 6 :
-				abMain.sortByName();				
+				abMain.sortByName();
+				break;
 			case 7 :
+				abMain.sortByCity();
+				break;
+			case 8 :
+				abMain.sortByState();
+				break;
+			case 9 :
+				abMain.sortByZip();
+				break;
+			case 10 :
 				System.out.println("Exiting...");
 				flag1=1;
 				break;
