@@ -121,27 +121,20 @@ public class Address_Book_Main {
 	}
 	
 	public void countByCityAndState() {
-		final HashMap<String, Integer>countByHashMap = new HashMap<String, Integer>();
-		Iterator<HashMap.Entry<String,AddressBookClass>> it4 = (multiAddressBook.entrySet()).iterator();
-		while(it4.hasNext()) {
-			HashMap.Entry<String,AddressBookClass> entry = it4.next();
-			AddressBookClass aBookClass3 = entry.getValue();
-			for(Contact c : aBookClass3.getAddressBook() ) {
-				if(countByHashMap.get(c.getCity())==null) {
-					countByHashMap.put(c.getCity(), 1);
-				}
-				else {
-					int co = countByHashMap.get(c.getCity());
-					countByHashMap.put(c.getCity(), co++);
-				}
+		List<AddressBookClass> demo1= multiAddressBook.values().stream().collect(Collectors.toList());
+		List<Contact> myList = new ArrayList<Contact>();
+		for(AddressBookClass abClass : demo1) {
+			for(Contact contact : abClass.getAddressBook()) {
+				myList.add((Contact) contact);
 			}
 		}
 		
-		Iterator<HashMap.Entry<String, AddressBookClass>> it5 = (multiAddressBook.entrySet()).iterator();
-		while(it5.hasNext()) {
-			HashMap.Entry<String,AddressBookClass> entry = it5.next();
-			System.out.println("City : "+entry.getKey()+" Count : "+entry.getValue());
-		}
+		Map<String, Long> map = myList.stream().collect(Collectors.groupingBy(Contact :: getCity,Collectors.counting()));
+		Map<String, Long> map2 = myList.stream().collect(Collectors.groupingBy(Contact :: getState,Collectors.counting()));
+		System.out.println("Count by City");
+		System.out.println(map);
+		System.out.println("Count By State");
+		System.out.println(map2);		
 	}
 	
 	public void displayAllAddressBooks() {
