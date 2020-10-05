@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 
 public class AddressBookClass {
 	public ArrayList<Contact> addressBook = new ArrayList<Contact>();
@@ -26,22 +28,23 @@ public class AddressBookClass {
 	
 	public Contact takeContactInformation() {
 		Scanner sc = new Scanner(System.in);
+		Scanner sc2 = new Scanner(System.in);
 		System.out.println("Enter first name: ");
 		String f_name = sc.nextLine();
 		System.out.println("Enter Last Name : ");
-		String l_name = sc.nextLine();
+		String l_name = sc2.nextLine();
 		System.out.println("Enter Address : ");
 		String address = sc.nextLine();
 		System.out.println("Enter City : ");
-		String city = sc.nextLine();
+		String city = sc2.nextLine();
 		System.out.println("Enter State : ");
 		String state = sc.nextLine();
 		System.out.println("Enter Zip : "); 
-		int zip = sc.nextInt();sc.nextLine();
+		int zip = sc2.nextInt(); sc2.nextLine();
 		System.out.println("Enter Phone Number : ");
 		int phone_Number= sc.nextInt(); sc.nextLine();
 		System.out.println("Enter email : ");
-		String email = sc.nextLine();
+		String email = sc2.nextLine();
 		Contact c= new Contact(f_name,l_name,address,city,state,zip,phone_Number,email);
 		return c;
 	}
@@ -54,12 +57,9 @@ public class AddressBookClass {
 	}
 	public void addContact(Contact contact) {
 		int flag =0;
-		for(Contact c : addressBook) {
-			if(contact.equals(c))
-				flag = 1;
-				
-		}
-		if(flag==0)
+		boolean contactExists = addressBook.stream()
+								.anyMatch(c -> c.equals(contact));
+		if(!contactExists)
 			addressBook.add(contact);
 		else 
 			System.out.println("Contact already exsits. please go for edit or delete!");

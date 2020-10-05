@@ -76,12 +76,63 @@ public class Contact{
 		
 	}
 	@Override
-	public boolean equals(Object o) {
-		if(o==this)
-			return true;
-		if(!(o instanceof Contact))
-			return false;
-		Contact c = (Contact) o;
-		return f_Name.equals(c.f_Name) && l_Name.equals(c.l_Name) && address.equals(c.address) && city.equals(c.city) && state.equals(c.state) && Integer.compare(zip, c.zip)==0 && Integer.compare(phone_Number, c.phone_Number)==0 && email.equals(c.email);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((f_Name == null) ? 0 : f_Name.hashCode());
+		result = prime * result + ((l_Name == null) ? 0 : l_Name.hashCode());
+		result = prime * result + phone_Number;
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + zip;
+		return result;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contact other = (Contact) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (f_Name == null) {
+			if (other.f_Name != null)
+				return false;
+		} else if (!f_Name.equals(other.f_Name))
+			return false;
+		if (l_Name == null) {
+			if (other.l_Name != null)
+				return false;
+		} else if (!l_Name.equals(other.l_Name))
+			return false;
+		if (phone_Number != other.phone_Number)
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (zip != other.zip)
+			return false;
+		return true;
+	}
+	
 }
