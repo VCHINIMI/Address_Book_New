@@ -1,6 +1,7 @@
 package MyPackage.Vinay.Address_Book_New;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -145,7 +146,7 @@ public class Address_Book_Main {
 				myList.add((Contact) contact);
 			}
 		}
-		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getF_Name().compareTo(n1.getF_Name())).collect(Collectors.toList());
+		List<Contact> sortedList = myList.stream().sorted(Comparator.comparing(Contact :: getF_Name)).collect(Collectors.toList());
 		System.out.println(sortedList);
 	}
 	
@@ -157,7 +158,7 @@ public class Address_Book_Main {
 				myList.add((Contact) contact);
 			}
 		}
-		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getCity().compareTo(n1.getCity())).collect(Collectors.toList());
+		List<Contact> sortedList = myList.stream().sorted(Comparator.comparing(Contact :: getCity)).collect(Collectors.toList());
 		System.out.println(sortedList);
 	}
 	
@@ -169,7 +170,7 @@ public class Address_Book_Main {
 				myList.add((Contact) contact);
 			}
 		}
-		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getState().compareTo(n1.getState())).collect(Collectors.toList());
+		List<Contact> sortedList = myList.stream().sorted(Comparator.comparing(Contact :: getState)).collect(Collectors.toList());
 		System.out.println(sortedList);
 	}
 	
@@ -181,7 +182,7 @@ public class Address_Book_Main {
 				myList.add((Contact) contact);
 			}
 		}
-		List<Contact> sortedList = myList.stream().sorted((n1,n2) -> n2.getZip()-n1.getZip()).collect(Collectors.toList());
+		List<Contact> sortedList = myList.stream().sorted(Comparator.comparingInt(Contact :: getZip)).collect(Collectors.toList());
 		System.out.println(sortedList);
 	}
 	
@@ -201,7 +202,9 @@ public class Address_Book_Main {
 			System.out.println("4. Search By Person Name");
 			System.out.println("5. Count by city Name");
 			System.out.println("6. Sort All Contacts By First Name ");
-			System.out.println("7. Exit");
+			System.out.println("7. Sort by City");
+			System.out.println("8. Sort by State");
+			System.out.println("9. Sort by Zip");
 			Scanner sc = new Scanner(System.in);
 			int option = sc.nextInt(); sc.nextLine();
 			switch(option) {
