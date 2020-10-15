@@ -1,6 +1,6 @@
 package MyPackage.Vinay.Address_Book_New;
 
-public class Contact{
+public class Contact {
 	String f_Name;
 	String l_Name;
 	String address;
@@ -9,55 +9,71 @@ public class Contact{
 	int zip;
 	int phone_Number;
 	String email;
-	
+
 	public String getF_Name() {
 		return f_Name;
 	}
+
 	public void setF_Name(String f_Name) {
 		this.f_Name = f_Name;
 	}
+
 	public String getL_Name() {
 		return l_Name;
 	}
+
 	public void setL_Name(String l_Name) {
 		this.l_Name = l_Name;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
 	public int getZip() {
 		return zip;
 	}
+
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
+
 	public int getPhone_Number() {
 		return phone_Number;
 	}
+
 	public void setPhone_Number(int phone_Number) {
 		this.phone_Number = phone_Number;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public Contact(String f_Name, String l_Name, String address, String city, String state, int zip, int phone_Number,
 			String email) {
 		super();
@@ -69,12 +85,15 @@ public class Contact{
 		this.zip = zip;
 		this.phone_Number = phone_Number;
 		this.email = email;
-	}	
+	}
+
 	@Override
 	public String toString() {
-		return ("Name : "+f_Name+"Last name : "+l_Name+" Address : "+address+" City : "+city+" State: "+state+" Zip Code: "+zip+" Phone Number : "+ phone_Number+" Email Id : "+email);
-		
+		return (f_Name + " " + l_Name + " " + address + " " + city + " " + state + " " + zip + " " + phone_Number + " "
+				+ email);
+
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,6 +108,7 @@ public class Contact{
 		result = prime * result + zip;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -134,5 +154,5 @@ public class Contact{
 			return false;
 		return true;
 	}
-	
+
 }
